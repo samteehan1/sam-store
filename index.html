@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snowboard</title>
+    <link rel="icon" type="image/svg+xml" href="/brand-logo.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <a href="/" class="brand-logo" aria-label="Home">
+        <img src="/brand-logo.svg" alt="Brand logo" />
+      </a>
+
+      <div class="product-visual">
+        <canvas id="three-canvas"></canvas>
+      </div>
+
+      <div class="product-info">
+        <header class="product-header">
+          <img
+            src="/snowboard-product-title.svg"
+            alt="Snowboard"
+            class="product-title"
+          />
+          <div class="product-meta">
+            <span class="sold-out">SOLD OUT</span>
+            <span class="price">599.00 USD</span>
+          </div>
+        </header>
+
+        <section class="product-details">
+          <nav class="tabs">
+            <button class="tab active" data-tab="description">Description</button>
+            <button class="tab" data-tab="specifications">Specifications</button>
+          </nav>
+
+          <div class="tab-content" id="tab-description">
+            <p>High-contrast, fluid graphic laid over a clean all-mountain platform. Built to ride everything without overcomplication.</p>
+            <p>Directional twin shape with a medium flex. Stable at speed with a centered feel underfoot. Enough structure to hold an edge, enough give to stay loose when you need it.</p>
+            <p>Camber profile for precision and response. Keeps the board engaged through turns and consistent on hardpack. Designed for controlled carve, fast transitions, and reliable edge hold.</p>
+            <p>Sintered base for speed and durability. Holds wax longer and maintains glide across changing conditions. Durable top sheet built to handle impact and repeat use.</p>
+            <p>Balanced geometry to keep the ride predictable across terrain. Works on groomers, side hits, and variable snow without needing adjustment.</p>
+            <p>Select length based on rider weight and preferred ride style.</p>
+          </div>
+
+          <div class="tab-content hidden" id="tab-specifications">
+            <table class="specs-table">
+              <tbody>
+                <tr><td>Shape</td><td>Directional Twin</td></tr>
+                <tr><td>Flex</td><td>Medium (5/10)</td></tr>
+                <tr><td>Profile</td><td>Camber</td></tr>
+                <tr><td>Base</td><td>Sintered</td></tr>
+                <tr><td>Terrain</td><td>All-Mountain</td></tr>
+                <tr><td>Sizes</td><td>144, 148, 152, 156, 160, 156W, 160W, 165W</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="size-selector">
+          <button class="size-pill" data-size="144">144</button>
+          <button class="size-pill" data-size="148">148</button>
+          <button class="size-pill" data-size="152">152</button>
+          <button class="size-pill" data-size="156">156</button>
+          <button class="size-pill" data-size="160">160</button>
+          <button class="size-pill" data-size="156W">156W</button>
+          <button class="size-pill" data-size="160W">160W</button>
+          <button class="size-pill" data-size="165W">165W</button>
+        </div>
+
+        <div class="cta-wrapper">
+          <button class="cta-button" id="notify-btn">Notify me next restock</button>
+          <form class="notify-form hidden" id="notify-form">
+            <input
+              type="email"
+              class="notify-input"
+              placeholder="Enter your email"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="notify-submit">→</button>
+          </form>
+          <p class="notify-confirmation hidden" id="notify-confirmation">You'll be notified!</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
