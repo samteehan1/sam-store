@@ -1,5 +1,8 @@
 import './style.css';
+import { inject } from '@vercel/analytics';
 import { initViewer } from './three-viewer.js';
+
+inject();
 
 // --- 3D Viewer ---
 const canvas = document.getElementById('three-canvas');
