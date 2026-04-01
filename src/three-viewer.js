@@ -2,7 +2,18 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-export function initViewer(canvas) {
+export function initViewer(canvas, options = {}) {
+  const {
+    cameraPosition = [0, 0.5, 3],
+    fov = 35,
+    enableZoom = false,
+    autoRotate = true,
+    autoRotateSpeed = 1.5,
+    minPolarAngle = Math.PI * 0.3,
+    maxPolarAngle = Math.PI * 0.7,
+    modelSize = 2,
+  } = options;
+
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
@@ -15,18 +26,19 @@ export function initViewer(canvas) {
 
   const scene = new THREE.Scene();
 
-  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(0, 0.5, 3);
+  const camera = new THREE.PerspectiveCamera(fov, 1, 0.1, 100);
+  camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
 
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
   controls.dampingFactor = 0.06;
+  controls.enableRotate = true;
   controls.enablePan = false;
-  controls.enableZoom = false;
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 1.5;
-  controls.minPolarAngle = Math.PI * 0.3;
-  controls.maxPolarAngle = Math.PI * 0.7;
+  controls.enableZoom = enableZoom;
+  controls.autoRotate = autoRotate;
+  controls.autoRotateSpeed = autoRotateSpeed;
+  controls.minPolarAngle = minPolarAngle;
+  controls.maxPolarAngle = maxPolarAngle;
 
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
   scene.add(ambientLight);
@@ -49,7 +61,7 @@ export function initViewer(canvas) {
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
       const maxDim = Math.max(size.x, size.y, size.z);
-      const scale = 2 / maxDim;
+      const scale = modelSize / maxDim;
       model.scale.setScalar(scale);
       model.position.sub(center.multiplyScalar(scale));
 
@@ -70,8 +82,12 @@ export function initViewer(canvas) {
     camera.updateProjectionMatrix();
   }
 
+  let animationFrameId = null;
+  let isDisposed = false;
+
   function animate() {
-    requestAnimationFrame(animate);
+    if (isDisposed) return;
+    animationFrameId = requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
   }
@@ -79,4 +95,14 @@ export function initViewer(canvas) {
   window.addEventListener('resize', resize);
   resize();
   animate();
+
+  return () => {
+    isDisposed = true;
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    window.removeEventListener('resize', resize);
+    controls.dispose();
+    renderer.dispose();
+  };
 }

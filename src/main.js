@@ -1,12 +1,15 @@
 import './style.css';
 import { inject } from '@vercel/analytics';
+import './hero-entry.tsx';
 import { initViewer } from './three-viewer.js';
 
 inject();
 
-// --- 3D Viewer ---
-const canvas = document.getElementById('three-canvas');
-if (canvas) initViewer(canvas);
+// --- 3D Viewer (defer so hero R3F canvas claims WebGL first; avoids blank / lost context) ---
+requestAnimationFrame(() => {
+  const canvas = document.getElementById('three-canvas');
+  if (canvas) initViewer(canvas);
+});
 
 // --- Tab Switching ---
 const tabs = document.querySelectorAll('.tab');
