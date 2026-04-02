@@ -11,7 +11,7 @@ export function initViewer(canvas, options = {}) {
     autoRotateSpeed = 1.5,
     minPolarAngle = Math.PI * 0.3,
     maxPolarAngle = Math.PI * 0.7,
-    modelSize = 2,
+    modelSize = 1.67,
   } = options;
 
   const renderer = new THREE.WebGLRenderer({
