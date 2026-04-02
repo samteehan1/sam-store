@@ -132,8 +132,10 @@ html, body {
   flex: 0 0 40%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
   gap: 40px;
-  padding: 34px 34px 40px 0;
+  padding: 22vh 34px 40px 0;
   max-width: 560px;
   overflow-y: auto;
 }
@@ -393,5 +395,7 @@ html, body {
     flex: none;
     max-width: 100%;
     padding: 32px 24px 48px;
+    height: auto;
+    justify-content: flex-start;
   }
 }
