@@ -4,13 +4,13 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 export function initViewer(canvas, options = {}) {
   const {
-    cameraPosition = [0, 0.5, 3],
+    cameraPosition = [0, 1, 3],
     fov = 35,
     enableZoom = false,
     autoRotate = true,
     autoRotateSpeed = 1.5,
-    minPolarAngle = Math.PI * 0.3,
-    maxPolarAngle = Math.PI * 0.7,
+    minPolarAngle = Math.PI * 0.2,
+    maxPolarAngle = Math.PI * 0.8,
     modelSize = 1.67,
   } = options;
 

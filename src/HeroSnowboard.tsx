@@ -38,7 +38,7 @@ function MovingSnowboard({ onReveal, onFinish }: HeroSnowboardProps) {
   useFrame(() => {
     if (!groupRef.current || hasExitedRef.current) return;
 
-    groupRef.current.position.x += 0.054;
+    groupRef.current.position.x += 0.06;
 
     if (
       groupRef.current.position.x > 0 &&
