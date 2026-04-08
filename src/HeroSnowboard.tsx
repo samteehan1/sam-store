@@ -90,7 +90,7 @@ export function HeroSnowboard({
   return (
     <section
       className="hero-snowboard"
-      aria-label="Hero snowboard section"
+      aria-label="enterprise buy-a-board hero"
       style={pointerStyle}
     >
       <div className="hero-canvas-layer" style={pointerStyle}>
